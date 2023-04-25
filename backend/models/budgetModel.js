@@ -1,41 +1,39 @@
-import mongoose from 'mongoose'
+import mongoose from "mongoose";
 
 const budgetSchema = mongoose.Schema(
-    {
-        title: {
-            type: String,
-            required: true,
-        },
-        user: {
-
-            type: mongoose.Schema.Types.ObjectId, ref: 'User',
-            required: true
-        },
-        monthlyBudget: {
-            type: Number,
-            required: true,
-        },
-        expenses: [
-            { type: mongoose.Schema.Types.ObjectId, ref: 'Expense' }
-        ],
-        startDate: {
-            type: Date,
-            required: true
-        },
-        endDate: {
-            type: Date,
-        },
-        active : {
-            type : Boolean,
-            default : true
-        },
+  {
+    title: {
+      type: String,
+      required: true,
     },
-    {
-        timestamps: true,
-    }
-)
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+    monthlyBudget: {
+      type: Number,
+      required: true,
+    },
+    expenses: { type: Array, default: [] },
 
+    startDate: {
+      type: Date,
+      required: true,
+    },
+    endDate: {
+      type: Date,
+    },
+    active: {
+      type: Boolean,
+      default: true,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 
-const Budget = mongoose.model('Budget', budgetSchema)
+const Budget = mongoose.model("Budget", budgetSchema);
 
-export default Budget
+export default Budget;

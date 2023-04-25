@@ -4,7 +4,5 @@ import { createBudget, deleteBudget, getMyBudget, updateBudget } from '../contro
 export const router = express.Router()
 
 
-router.route('/').post(protect, createBudget)
-// router.route('/login').post(createBudget)
-router.route('/:id').get(protect, getMyBudget).post(protect, updateBudget).delete(protect, deleteBudget)
-router.route('/self').get(protect, getMyBudget)
+router.route('/').post(protect, createBudget).get(protect, getMyBudget)
+ router.route('/:id').get(protect, getMyBudget).post(protect, updateBudget).delete(protect, deleteBudget)

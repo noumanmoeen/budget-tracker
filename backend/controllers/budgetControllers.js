@@ -1,127 +1,116 @@
-import Budget from "../models/budgetModel.js"
-import asyncHandler from 'express-async-handler'
-import moment from 'moment'
-
+import Budget from "../models/budgetModel.js";
+import asyncHandler from "express-async-handler";
+import moment from "moment";
+import mongoose from "mongoose";
 
 export const createBudget = asyncHandler(async (req, res) => {
+  const { title, monthlyBudget, startDate, active } = req.body;
 
+  if (!title || !monthlyBudget || !startDate || !active) {
+    res.status(400);
+    throw new Error("Please enter all fields");
+  }
 
-    const { title, monthlyBudget, startDate, active } = req.body
+  const activeBudgets = await checkForActiveBudgets(req.user.id);
 
-    if (!title || !monthlyBudget || !startDate || !active) {
-        res.status(400)
-        throw new Error('Please enter all fields')
-    }
+  if (activeBudgets.length) {
+    activeBudgets.map(async ({ _id }) => {
+      await Budget.findOneAndUpdate({ _id }, { active: false });
+    });
+  }
 
-    const activeBudgets = await checkForActiveBudgets(req.user.id)
+  const budgetStart = moment(startDate);
+  const budget = await Budget.create({
+    title,
+    monthlyBudget,
+    startDate,
+    user: req.user.id,
+    endDate: budgetStart.clone().add(1, "months"),
+  });
 
-    if (activeBudgets.length) {
-        activeBudgets.map(async ({ _id }) => {
-            await Budget.findOneAndUpdate({ _id }, { active: false })
-        })
-    }
-
-    const budgetStart = moment(startDate)
-    const budget = await Budget.create({
-        title, monthlyBudget, startDate, user: req.user.id, endDate: budgetStart.clone().add(1, "months")
-    })
-
-    res.json({
-        budget
-    })
-
-
-})
-
+  res.json({
+    budget,
+  });
+});
 
 export const getMyBudget = asyncHandler(async (req, res) => {
+  const budgets = await Budget.find({ user: req.user.id }).select([
+    "-createdAt",
+    "-updatedAt",
+    "-__v",
+  ])
 
-
-    const budgets = await Budget.find({ user: req.user.id }).select(['-createdAt', '-updatedAt', '-__v'])
-
-    res.json({
-        budgets
-    })
-
-})
+  res.json({
+    budgets,
+  });
+});
 
 export const updateBudget = asyncHandler(async (req, res) => {
+  const { id } = req.params;
 
+  let { active, expenses } = req.body;
 
-    const { id } = req.params
+  
+  if (!id) {
+    res.status(400);
+    throw new Error("Please enter id for budget");
+  }
 
-    const { active } = req.body
-
-    if (!id) {
-        res.status(400)
-        throw new Error('Please enter id for budget')
+  if (active) {
+    const activeBudgets = await checkForActiveBudgets(req.user.id);
+    if (activeBudgets.length) {
+      activeBudgets.map(async ({ _id }) => {
+        await Budget.findOneAndUpdate({ _id }, { active: false });
+      });
     }
+  }
 
-    if (active) {
-        const activeBudgets = await checkForActiveBudgets(req.user.id)
-        if (activeBudgets.length) {
-            activeBudgets.map(async ({ _id }) => {
-                await Budget.findOneAndUpdate({ _id }, { active: false })
-            })
-        }
+  const budget = await Budget.findOneAndUpdate(
+    { _id: id },
+    { ...req.body, expenses },
+    {
+      new: true,
     }
+  ).select(["-createdAt", "-updatedAt", "-__v"]);
 
-    const budget = await Budget.findOneAndUpdate({ _id: id }, req.body, {
-        new: true,
-    }).select(['-createdAt', '-updatedAt', '-__v'])
-
-    res.json({
-        budget
-    })
-
-
-})
+  res.json({
+    budget,
+  });
+});
 
 export const deleteBudget = asyncHandler(async (req, res) => {
+  const { id } = req.params;
 
+  if (!id) {
+    res.status(400);
+    throw new Error("Please enter id for budget");
+  }
 
-    const { id } = req.params
+  await Budget.deleteOne(id);
 
-    if (!id) {
-        res.status(400)
-        throw new Error('Please enter id for budget')
-    }
-
-
-    await Budget.deleteOne(id)
-
-    res.json({
-        message: "Budget Deleted"
-    })
-
-
-})
+  res.json({
+    message: "Budget Deleted",
+  });
+});
 
 export const getBudgetbyId = asyncHandler(async (req, res) => {
+  const { id } = req.params;
 
+  if (!id) {
+    res.status(400);
+    throw new Error("Please enter id for budget");
+  }
 
-    const { id } = req.params
+  const budget = await Budget.findById(id)
 
-    if (!id) {
-        res.status(400)
-        throw new Error('Please enter id for budget')
-    }
-
-
-    const budget = await Budget.findById(id)
-
-    res.json({
-        budget
-    })
-
-
-})
-
+  res.json({
+    budget,
+  });
+});
 
 const checkForActiveBudgets = asyncHandler(async (userId, budgetId) => {
-
-    const budgets = await Budget.find({ user: userId })
-    return budgets.filter((item) => item.active && item._id.toString() !== budgetId || '')
-
-})
-
+  const budgets = await Budget.find({ user: userId });
+  return budgets.filter(
+    (item) => (item.active && item._id.toString() !== budgetId) || ""
+  );
+});
