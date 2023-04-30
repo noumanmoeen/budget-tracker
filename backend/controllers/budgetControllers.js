@@ -1,10 +1,11 @@
 import Budget from "../models/budgetModel.js";
 import asyncHandler from "express-async-handler";
 import moment from "moment";
-import mongoose from "mongoose";
+import { v4 as uuidv4 } from "uuid";
+import lodash from "lodash";
 
 export const createBudget = asyncHandler(async (req, res) => {
-  const { title, monthlyBudget, startDate, active } = req.body;
+  let { title, monthlyBudget, startDate, active, expenses } = req.body;
 
   if (!title || !monthlyBudget || !startDate || !active) {
     res.status(400);
@@ -19,6 +20,10 @@ export const createBudget = asyncHandler(async (req, res) => {
     });
   }
 
+  if (expenses && expenses.length) {
+    expenses = parseExpenses(expenses);
+  }
+
   const budgetStart = moment(startDate);
   const budget = await Budget.create({
     title,
@@ -26,6 +31,7 @@ export const createBudget = asyncHandler(async (req, res) => {
     startDate,
     user: req.user.id,
     endDate: budgetStart.clone().add(1, "months"),
+    expenses,
   });
 
   res.json({
@@ -34,11 +40,11 @@ export const createBudget = asyncHandler(async (req, res) => {
 });
 
 export const getMyBudget = asyncHandler(async (req, res) => {
-  const budgets = await Budget.find({ user: req.user.id }).select([
+  const budgets = await Budget.find({ user: req.user.id }).populate(['user','expenses']).select([
     "-createdAt",
     "-updatedAt",
     "-__v",
-  ])
+  ]);
 
   res.json({
     budgets,
@@ -50,28 +56,41 @@ export const updateBudget = asyncHandler(async (req, res) => {
 
   let { active, expenses } = req.body;
 
-  
   if (!id) {
     res.status(400);
     throw new Error("Please enter id for budget");
+  }
+
+  const existingBudget = await Budget.findById(id);
+
+  if(!Boolean(existingBudget))
+  {
+    res.status(404)
+    throw new Error('Budget not found')
   }
 
   if (active) {
     const activeBudgets = await checkForActiveBudgets(req.user.id);
     if (activeBudgets.length) {
       activeBudgets.map(async ({ _id }) => {
-        await Budget.findOneAndUpdate({ _id }, { active: false });
+        await Budget.findByIdAndUpdate({ _id }, { active: false });
       });
     }
   }
 
-  const budget = await Budget.findOneAndUpdate(
-    { _id: id },
-    { ...req.body, expenses },
-    {
-      new: true,
-    }
-  ).select(["-createdAt", "-updatedAt", "-__v"]);
+  if (expenses && expenses.length) {
+    const expenseIds = existingBudget.expenses.map((id) => {
+      return  id.toString()
+    })
+      expenses = lodash.uniq(expenseIds.concat(expenses))
+  }
+
+  req.body = { ...req.body, expenses };
+
+ 
+  const budget = await Budget.findByIdAndUpdate({ _id: id }, req.body, {
+    new: true,
+  }).select(["-createdAt", "-updatedAt", "-__v"]);
 
   res.json({
     budget,
@@ -101,7 +120,7 @@ export const getBudgetbyId = asyncHandler(async (req, res) => {
     throw new Error("Please enter id for budget");
   }
 
-  const budget = await Budget.findById(id)
+  const budget = await Budget.findById(id).populate(['user','expenses']);
 
   res.json({
     budget,
@@ -114,3 +133,14 @@ const checkForActiveBudgets = asyncHandler(async (userId, budgetId) => {
     (item) => (item.active && item._id.toString() !== budgetId) || ""
   );
 });
+
+const parseExpenses = (expenses) => {
+  const parsedExpenses = expenses.map((expense) => {
+    return {
+      ...expense,
+      expenseId: uuidv4(),
+    };
+  });
+
+  return parsedExpenses;
+};

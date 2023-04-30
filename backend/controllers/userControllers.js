@@ -4,7 +4,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import Budget from "../models/budgetModel.js";
 import moment from "moment";
-import lodash from "lodash";
+import Expense from "../models/expenseModel.js";
 
 export const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password, phoneNumber } = req.body;
@@ -14,7 +14,6 @@ export const registerUser = asyncHandler(async (req, res) => {
     throw new Error("Please add all fields");
   }
 
-  // Check if user exists
   const userExists = await User.findOne({ email });
 
   if (userExists) {
@@ -22,11 +21,9 @@ export const registerUser = asyncHandler(async (req, res) => {
     throw new Error("User already exists");
   }
 
-  // Hash password
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
 
-  // Create user
   const user = await User.create({
     name,
     email,
@@ -121,36 +118,71 @@ const generateToken = (id) => {
 
 const checkAndReNewBudget = async (userId) => {
   try {
-    const userBudgets = await Budget.find({ user: userId }).select([
-      "-createdAt",
-      "-updatedAt",
-      "-__v",
-    ]);
+    const userBudgets = await Budget.find({ user: userId })
+      .populate("expenses")
+      .select(["-createdAt", "-updatedAt", "-__v"]);
 
     userBudgets.map(async (budget) => {
-      const todaysDate = moment().add(6, "months");
+      const todaysDate = moment();
       const endDate = moment(budget.endDate);
       const nextEndDate = todaysDate.clone().add(1, "months");
 
-      
       const remainingDays = todaysDate.diff(endDate, "d");
-      if (remainingDays > 0) {
-         const filteredExpenses = budget.expenses.filter(
-          ({ expenseType }) => expenseType === "MONTHLY"
+      if (remainingDays === 0 || true) {
+        let filteredExpenses = budget.expenses.filter(
+          ({ expenseType }) => expenseType !== "MONTHLY"
         );
-       
+        filteredExpenses = filteredExpenses.map(
+          ({ title, amount, paid, expenseType }) => {
+            return {
+              title,
+              amount,
+              paid,
+              expenseType,
+              budget: undefined,
+            };
+          }
+        );
         const budgetData = {
           title: budget.title,
           monthlyBudget: budget.monthlyBudget,
-          startDate: budget.startDate,
+          startDate: budget.endDate,
           endDate: nextEndDate,
           active: budget.active,
-          expenses: filteredExpenses,
           user: userId,
         };
-        console.log("heree 1 ", budgetData);
-        await Budget.create(budgetData);
-        await Budget.findByIdAndDelete(budget._id);
+        const temp = budget.expenses.reduce(
+          (acc, curr) => curr.amount + acc,
+          0
+        );
+          
+         await Budget.findByIdAndUpdate(
+          { _id: budget._id },
+          {
+            monthlySavings: budget.monthlyBudget - temp,
+            active : false
+          },
+          { new: true }
+        );
+        const createdBudget = await Budget.create(budgetData);
+        filteredExpenses = filteredExpenses.map((item) => {
+          return {
+            ...item,
+            budget: createdBudget._id,
+          };
+        });
+        await Expense.insertMany(filteredExpenses)
+          .then((docs) => {
+            filteredExpenses = docs;
+          })
+          .catch((e) => {
+            throw new Error("Eror");
+          });
+        await Budget.findByIdAndUpdate(
+          { _id: createdBudget._id },
+          { expenses: filteredExpenses.map((expense) => expense._id) },
+          { new: true }
+        );
       }
     });
   } catch (err) {

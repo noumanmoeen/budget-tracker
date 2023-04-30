@@ -15,7 +15,10 @@ const budgetSchema = mongoose.Schema(
       type: Number,
       required: true,
     },
-    expenses: { type: Array, default: [] },
+    monthlySavings: {
+      type: Number,
+     },
+    expenses: [{ type: mongoose.Schema.Types.ObjectId, ref : 'Expense' }],
 
     startDate: {
       type: Date,
@@ -33,6 +36,7 @@ const budgetSchema = mongoose.Schema(
     timestamps: true,
   }
 );
+
 
 const Budget = mongoose.model("Budget", budgetSchema);
 
