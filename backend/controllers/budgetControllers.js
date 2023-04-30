@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import lodash from "lodash";
 
 export const createBudget = asyncHandler(async (req, res) => {
-  let { title, monthlyBudget, startDate, active, expenses } = req.body;
+  let { title, monthlyBudget, startDate, active, } = req.body;
 
   if (!title || !monthlyBudget || !startDate || !active) {
     res.status(400);
@@ -20,10 +20,7 @@ export const createBudget = asyncHandler(async (req, res) => {
     });
   }
 
-  if (expenses && expenses.length) {
-    expenses = parseExpenses(expenses);
-  }
-
+ 
   const budgetStart = moment(startDate);
   const budget = await Budget.create({
     title,
@@ -134,13 +131,3 @@ const checkForActiveBudgets = asyncHandler(async (userId, budgetId) => {
   );
 });
 
-const parseExpenses = (expenses) => {
-  const parsedExpenses = expenses.map((expense) => {
-    return {
-      ...expense,
-      expenseId: uuidv4(),
-    };
-  });
-
-  return parsedExpenses;
-};
