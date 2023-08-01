@@ -2,6 +2,8 @@ import React from "react";
 import Header from "../components/Header";
 
 const Dashboard = () => {
+
+  
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
       <Header />
