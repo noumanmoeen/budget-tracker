@@ -21,9 +21,9 @@ function App() {
             <Route
               path="/"
               element={
-                <ProtectedRoute>
+                // <ProtectedRoute>
                   <Dashboard />
-                </ProtectedRoute>
+                // </ProtectedRoute>
               }
             />
             <Route path="/login" element={<Login />} />

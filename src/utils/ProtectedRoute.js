@@ -1,17 +1,23 @@
-import { Route, Navigate, Outlet } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Navigate, Outlet } from "react-router-dom";
 
 export const ProtectedRoute = ({ component: Component, ...rest }) => {
-  const isLogin = async () => {
-    const isLogin = localStorage.getItem("isLogin");
-    console.log("HERE ", isLogin);
-    return true;
-  };
+  const [loginState, setLoginState] = useState(true);
 
+  // const isLogin = async () => {
+  //   const currState = localStorage.getItem("isLogin");
+  //   setLoginState(JSON.parse(currState));
+  //   console.log('CURRRR' , loginState )
+  // };
+
+  // useEffect(() => {
+  //   isLogin();
+  // }, []);
+
+  useEffect(() => {
+    console.log("HERE " , loginState);
+  }, [loginState]);
   return (
-   
-        <>
-          {true ? <Navigate to="/login" replace={true} /> : <Outlet />}
-        </>
-      
+    <>{loginState ?  <Outlet />  : <Navigate to="/login" replace={true} /> }</>
   );
 };

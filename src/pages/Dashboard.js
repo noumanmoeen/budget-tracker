@@ -1,10 +1,14 @@
 import React from "react";
+import Header from "../components/Header";
 
 const Dashboard = () => {
   return (
-    <div className="justify-center">
-      <h1 className="text-center font-bold font-sans">Dashboard</h1>
-    </div>
+    <section className="bg-gray-50 dark:bg-gray-900">
+      <Header />
+      <div className="flex px-6 py-8 mx-auto md:h-screen lg:py-0">
+       
+      </div>
+    </section>
   );
 };
 
