@@ -4,9 +4,9 @@ import "react-toastify/dist/ReactToastify.css";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import { ProtectedRoute } from "./utils/ProtectedRoute";
 
 function App() {
-
   return (
     <>
       <Router>
@@ -15,7 +15,9 @@ function App() {
             <Route
               path="/"
               element={
+                <ProtectedRoute>
                   <Dashboard />
+                </ProtectedRoute>
               }
             />
             <Route path="/login" element={<Login />} />
