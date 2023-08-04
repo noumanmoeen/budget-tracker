@@ -5,7 +5,6 @@ const Dashboard = () => {
   return (
     <> 
       <section className="bg-gray-50 dark:bg-gray-900">
-        <Header />
         <div className="flex justify-center  px-6 py-8 mx-auto md:h-screen lg:py-0">
           <section class="bg-white dark:bg-gray-900">
             <div className="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">

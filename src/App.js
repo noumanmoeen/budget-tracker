@@ -5,18 +5,46 @@ import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { ProtectedRoute } from "./utils/ProtectedRoute";
+import Budgets from "./pages/Budgets";
+import Details from "./pages/Details";
+import Account from "./pages/Account";
+import Header from "./components/Header";
 
 function App() {
   return (
     <>
       <Router>
+      <Header />
+
         <div>
           <Routes>
             <Route
               path="/"
               element={
+                   <Dashboard />
+               }
+            />
+             <Route
+              path="/budgets"
+              element={
                 <ProtectedRoute>
-                  <Dashboard />
+                  <Budgets />
+                </ProtectedRoute>
+              }
+            />
+             <Route
+              path="/details"
+              element={
+                <ProtectedRoute>
+                  <Details />
+                </ProtectedRoute>
+              }
+            />
+             <Route
+              path="/account"
+              element={
+                <ProtectedRoute>
+                  <Account />
                 </ProtectedRoute>
               }
             />
