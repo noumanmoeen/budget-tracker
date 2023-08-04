@@ -1,10 +1,10 @@
 import React from "react";
 import { Link, useParams, useResolvedPath } from "react-router-dom";
+import { ACCOUNTS, BUDGETS, DETAILS, HOME } from "../utils/constants";
 
 const Header = () => {
   let { pathname = "/" } = useResolvedPath();
 
-  console.log("HEEEE", pathname);
   return (
     <nav className="bg-white border-gray-200 dark:bg-gray-900">
       <div className="max-w-screen-3xl flex flex-wrap items-center justify-between mx-auto px-10 py-5  ">
@@ -24,35 +24,44 @@ const Header = () => {
               <Link to={"/"}>
                 <a
                   href="#"
-                  className="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent  dark:text-white md:dark:text-blue-500"
-                  aria-current="page"
+                  className={`block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:${
+                    pathname === HOME ? "dark" : "hover"
+                  }:text-blue-500 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent`}                  aria-current="page"
                 >
                   Home
                 </a>
               </Link>
             </li>
             <li>
-              <Link to={"/budgets"}>
-                <a className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+              <Link to={BUDGETS}>
+                <a
+                  className={`block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:${
+                    pathname === BUDGETS ? "dark" : "hover"
+                  }:text-blue-500 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent`}
+                >
                   Budgets
                 </a>
               </Link>
             </li>
             <li>
-              <Link to={"/details"}>
+              <Link to={DETAILS}>
                 <a
                   href="#"
-                  className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                  className={`block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:${
+                    pathname === DETAILS ? "dark" : "hover"
+                  }:text-blue-500 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent`}
                 >
                   Details
                 </a>
               </Link>
             </li>
             <li>
-              <Link to={"/account"}>
+              <Link to={ACCOUNTS}>
                 <a
                   href="#"
-                  className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                  className={`block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:${
+                    pathname === ACCOUNTS ? "dark" : "hover"
+                  }:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent`}
                 >
                   Account
                 </a>
