@@ -1,7 +1,6 @@
 import React from "react";
-import Header from "../components/Header";
 
-const Dashboard = () => {
+const Home = () => {
   return (
     <> 
       <section className="bg-gray-50 dark:bg-gray-900">
@@ -44,4 +43,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Home;
