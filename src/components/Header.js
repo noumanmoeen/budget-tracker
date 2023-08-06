@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useParams, useResolvedPath } from "react-router-dom";
+import { Link, useResolvedPath } from "react-router-dom";
 import { ACCOUNTS, BUDGETS, DETAILS, HOME } from "../utils/constants";
 
 const Header = () => {
