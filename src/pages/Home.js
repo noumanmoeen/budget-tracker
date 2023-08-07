@@ -3,12 +3,12 @@ import React from "react";
 const Home = () => {
   return (
     <> 
-      <section className="bg-gray-50 dark:bg-gray-900">
-        <div className="flex justify-center  px-6 py-8 mx-auto md:h-screen lg:py-0">
-          <section class="bg-white dark:bg-gray-900">
+      <section className="bg-gray-50 dark:bg-primary">
+        <div className="flex justify-center  px-6 py-8 mx-auto  lg:py-0">
+          <section class="bg-white dark:bg-primary">
             <div className="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
               <div className="font-light text-gray-500 sm:text-lg dark:text-gray-400">
-                <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
+                <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-secondary">
                   We didn't reinvent the wheel
                 </h2>
                 <p className="mb-4">
