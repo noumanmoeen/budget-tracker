@@ -1,30 +1,20 @@
-import React from "react";
+import React from 'react';
+import BudgetCard from '../components/BudgetCard';
 
 function Budgets() {
+  let arr = new Array(5);
+  arr.fill(2, 0, 5);
+  arr = arr.map((a, i) => i + 1);
   return (
-    <div className="p-10 grid grid-cols-3 gap-6">
-      <div className=" bg-secondary p-8 border rounded-md shadow-lg">
-        What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing
-       
-      </div>
-      <div className=" bg-secondary p-8 border rounded-md shadow-lg">
-        What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing
-        and typesetting industry. Lorem Ipsum has been the industry's standard
-       \
-      </div>
-      <div className=" bg-secondary p-8 border rounded-md shadow-lg">
-        What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing
-        and typesetting industry. Lorem Ipsum has been the industry's standard
-        dummy text ever since the 1500s, when an unknown printer took a galley
-        humour and the like
-      </div>
-      <div className=" bg-secondary p-8 border rounded-md shadow-lg">
-        What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the printing
-        and typesetting industry. Lorem Ipsum has been the industry's standard
-        dummy text ever since the 1500s, when an unknown printer took a galley
-        of type and scrambled it to make a type specimen book. It has survived
-      
-      </div>
+    <div className='p-10'>
+     <h1 className=' text-4xl tracking-tight font-extrabold text-text mb-10 '>
+        Your Budgets
+      </h1>
+    <div className='grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-6'>
+      {arr.map((item) => (
+        <BudgetCard key={item} budgetnumber={item} disabled={item === 1 }/>
+      ))}
+    </div>
     </div>
   );
 }

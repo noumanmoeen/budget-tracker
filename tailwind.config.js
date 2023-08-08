@@ -6,9 +6,9 @@ module.exports = {
       colors: {
         text : '#293241',
         primary : '#F5F5F4',
-        secondary :'#6D9886'
+        secondary :'#6D9886',
+        disabled : "#a4c6e8"
       },
-      // #F5F5F4
       fontFamily : {
         sans : 'Preahvihear , sans-serif'
       }
