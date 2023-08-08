@@ -15,8 +15,8 @@ const Header = () => {
               className="h-8 mr-3"
               alt="Flowbite Logo"
             />
-            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-secondary">
-              Budget Planner
+            <span className="self-center text-2xl font-semibold whitespace-nowrap ">
+              Budget Tracker
             </span>
           </a>
         </Link>
@@ -25,10 +25,9 @@ const Header = () => {
             <li>
               <Link to={"/"}>
                 <a
-                  href="#"
                   className={`block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:${
                     pathname === HOME ? "dark" : "hover"
-                  }:text-blue-500 md:p-0 dark:text-secondary md:dark:${
+                  }:text-blue-500 md:p-0 md:dark:${
                     pathname === HOME ? "" : "hover"
                   }:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-secondary md:dark:hover:bg-transparent`}
                   aria-current="page"
@@ -42,7 +41,7 @@ const Header = () => {
                 <a
                   className={`block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:${
                     pathname === BUDGETS ? "dark" : "hover"
-                  }:text-blue-500 md:p-0 dark:text-secondary md:dark:${
+                  }:text-blue-500 md:p-0 md:dark:${
                     pathname === BUDGETS ? "" : "hover"
                   }:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-secondary md:dark:hover:bg-transparent`}
                 >
@@ -53,10 +52,9 @@ const Header = () => {
             <li>
               <Link to={DETAILS}>
                 <a
-                  href="#"
                   className={`block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:${
                     pathname === DETAILS ? "dark" : "hover"
-                  }:text-blue-500 md:p-0 dark:text-secondary md:dark:${
+                  }:text-blue-500 md:p-0  md:dark:${
                     pathname === DETAILS ? "" : "hover"
                   }:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-secondary md:dark:hover:bg-transparent`}
                 >
@@ -67,12 +65,11 @@ const Header = () => {
             <li>
               <Link to={ACCOUNTS}>
                 <a
-                  href="#"
                   className={`block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:${
                     pathname === ACCOUNTS ? "dark" : "hover"
-                  }:text-blue-700 md:p-0 dark:text-secondary md:dark:${
+                  }:text-blue-700 md:p-0  md:dark:${
                     pathname === ACCOUNTS ? "" : "hover:"
-                  }text-blue-500 dark:hover:bg-gray-700 dark:hover:text-secondary md:dark:hover:bg-transparent`}
+                  }text-blue-500 dark:hover:bg-gray-700  dark:hover:text-secondary  md:dark:hover:bg-transparent`}
                 >
                   Account
                 </a>

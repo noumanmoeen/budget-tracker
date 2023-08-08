@@ -5,9 +5,13 @@ module.exports = {
     extend: {
       colors: {
         text : '#293241',
-        primary : '#031926',
-        secondary :'#77aca2'
+        primary : '#F5F5F4',
+        secondary :'#6D9886'
       },
+      // #F5F5F4
+      fontFamily : {
+        sans : 'Preahvihear , sans-serif'
+      }
     },
   },
   plugins: [],
