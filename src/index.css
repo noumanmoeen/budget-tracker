@@ -3,3 +3,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer components {
+    .checkbox-input {
+        accent-color: rgb(41, 50, 65);
+    }
+    /* ... */
+  }
