@@ -12,7 +12,7 @@ function Budgets() {
       </h1>
     <div className='grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-6'>
       {arr.map((item) => (
-        <BudgetCard key={item} budgetnumber={item} disabled={item === 1 }/>
+        <BudgetCard  key={item} budgetnumber={item} active={item === 1 }/>
       ))}
     </div>
     </div>

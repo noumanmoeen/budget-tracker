@@ -9,6 +9,7 @@ import Budgets from "./pages/Budgets";
 import Details from "./pages/Details";
 import Account from "./pages/Account";
 import Header from "./components/Header";
+import BudgetDetails from "./pages/BudgetDetails";
 
 function App() {
   return (
@@ -45,6 +46,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <Account />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/budget"
+              element={
+                <ProtectedRoute>
+                  <BudgetDetails />
                 </ProtectedRoute>
               }
             />
