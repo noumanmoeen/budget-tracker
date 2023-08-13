@@ -9,7 +9,7 @@ const Header = () => {
     <nav className="bg-white border-gray-200 dark:bg-primary">
       <div className="max-w-screen-3xl flex flex-wrap items-center justify-between mx-auto px-10 py-5  ">
         <Link to={"/"}>
-          <a class="flex items-center">
+          <a className="flex items-center">
             <img
               src="https://flowbite.com/docs/images/logo.svg"
               className="h-8 mr-3"
