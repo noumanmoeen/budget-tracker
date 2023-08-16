@@ -1,9 +1,12 @@
 import React from 'react'
+import { Tab, Tabs } from '../components/Tabs'
+import { DetailsTabs } from '../components/DetailsTabs'
 
 function Details() {
   return (
-    <div>
+    <div className='p-10'>
         Details
+        <DetailsTabs />
     </div>
   )
 }

@@ -45,7 +45,7 @@ const BudgetDetails = () => {
   const COLORS = ["#0088FE", "#FF8042"];
 
   // NOTE
-  // Add edit feature for budget details
+  // Add buttons for confirmation and cancellation
   return (
     <div className="p-10">
       <div className="flex flex-row justify-between">
