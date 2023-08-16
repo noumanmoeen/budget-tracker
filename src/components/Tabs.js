@@ -28,7 +28,6 @@ const Tabs = ({ children }) => {
               } `}
               onClick={(e) => handleClick(e, child.props.label)}
             >
-              {console.log(i)}
               {child.props.label}
             </button>
           ))}

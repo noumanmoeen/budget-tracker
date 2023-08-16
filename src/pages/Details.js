@@ -4,7 +4,7 @@ import { DetailsTabs } from '../components/DetailsTabs'
 
 function Details() {
   return (
-    <div className='p-10'>
+    <div className='p-6'>
         Details
         <DetailsTabs />
     </div>

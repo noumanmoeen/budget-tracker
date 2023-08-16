@@ -47,7 +47,7 @@ const BudgetDetails = () => {
   // NOTE
   // Add buttons for confirmation and cancellation
   return (
-    <div className="p-10">
+    <div className="p-6">
       <div className="flex flex-row justify-between">
         <div className="w-full">
           <div className="flex flex-row justify-between">
