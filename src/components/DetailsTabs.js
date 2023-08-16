@@ -5,9 +5,9 @@ export const DetailsTabs = () => {
   return (
     <div>
         <Tabs>
-        <Tab label="Tab 1">
+        <Tab label="Monthly">
           <div className="py-4">
-            <h2 className="text-lg font-medium mb-2">Tab 1 Content</h2>
+            <h2 className="text-lg font-medium mb-2">Monthly</h2>
             <p className="text-gray-700">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae
               quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis
@@ -21,9 +21,9 @@ export const DetailsTabs = () => {
             </p>
           </div>
         </Tab>
-        <Tab label="Tab 2">
+        <Tab label="Yearly">
           <div className="py-4">
-            <h2 className="text-lg font-medium mb-2">Tab 2 Content</h2>
+            <h2 className="text-lg font-medium mb-2">Yearly</h2>
             <p className="text-gray-700">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae
               quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis
