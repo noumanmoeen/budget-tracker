@@ -1,6 +1,5 @@
 import React from 'react';
 import { DetailsTabs } from '../components/DetailsTabs';
-import DetailsCard from '../components/DetailsCard';
 
 function Details() {
   return (
