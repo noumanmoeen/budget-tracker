@@ -17,7 +17,7 @@ const Tabs = ({ children }) => {
               key={child.props.label}
               className={`${
                 activeTab === child.props.label
-                  ? 'bg-secondary text-primary'
+                  ? 'bg-secondary text-text'
                   : ''
               } flex-1 font-medium py-2  ${
                 i === 0
