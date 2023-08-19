@@ -5,7 +5,6 @@ function Details() {
   return (
     <div className='p-6'>
       <div className='flex justify-around '>
-       {/* <DetailsCard heading={'Active Budget'} content={'1289898'} subcontent={'BUDGET 1'}/> */}
         <div  className='h-30 w-full py-5 px-7  border rounded-md shadow-lg bg-secondary mb-10'>
           <div className='flex justify-between  '>
             <div className='flex flex-col justify-end'>
