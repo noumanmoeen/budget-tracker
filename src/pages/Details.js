@@ -25,7 +25,6 @@ function Details() {
               <p>Meezan Bank</p>
             </div>
             <div className='grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-3'>
-              {' '}
               <p>Saving Goals</p>
               <p>Rs 2000</p>
             </div>
