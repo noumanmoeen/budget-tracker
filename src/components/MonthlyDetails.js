@@ -66,10 +66,22 @@ const data = [
 const MonthlyDetails = () => {
   return (
     <div className='py-9'>
-       <div>
-        <CustomBarChart xaxis={'name'} dataKey='savings' label={'Savings by month'} width={'80%'} data={data} />
+      <div>
+        <CustomBarChart
+          xaxis={'name'}
+          dataKey='savings'
+          label={'Savings by month'}
+          width={'80%'}
+          data={data}
+        />
       </div>
-      <CustomBarChart xaxis={'name'} dataKey='expenses' label={'Expenses by month'} width={'80%'} data={data} />
+      <CustomBarChart
+        xaxis={'name'}
+        dataKey='expenses'
+        label={'Expenses by month'}
+        width={'80%'}
+        data={data}
+      />
     </div>
   );
 };
