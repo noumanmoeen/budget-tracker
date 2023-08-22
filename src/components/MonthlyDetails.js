@@ -85,20 +85,23 @@ const expenseData = [
     name: 'French',
     expenses: 81386,
   },
-  
 ];
 const MonthlyDetails = () => {
   return (
     <div className='py-9'>
       <div>
-        <CustomBarChart
-          xaxis={'name'}
-          dataKey='savings'
-          label={'Savings by month'}
-          width={'80%'}
-          data={data}
-        />
+        <div>TOP EXPENSES</div>
+        <div>UPCOMING PAYMENTS</div>
+        <div>SAVING GOALS MET</div>
       </div>
+
+      <CustomBarChart
+        xaxis={'name'}
+        dataKey='savings'
+        label={'Savings by month'}
+        width={'80%'}
+        data={data}
+      />
       <CustomBarChart
         xaxis={'name'}
         dataKey='expenses'
