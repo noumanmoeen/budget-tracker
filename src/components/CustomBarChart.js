@@ -2,8 +2,6 @@ import React from 'react';
 import {
   Bar,
   BarChart,
-  CartesianGrid,
-  Legend,
   ReferenceLine,
   ResponsiveContainer,
   Tooltip,

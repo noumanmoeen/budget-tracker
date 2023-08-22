@@ -63,6 +63,30 @@ const data = [
     expenses: 39870,
   },
 ];
+
+const expenseData = [
+  {
+    name: 'Food',
+    expenses: 96172,
+  },
+  {
+    name: 'My',
+    expenses: 73864,
+  },
+  {
+    name: 'Mother',
+    expenses: 17754,
+  },
+  {
+    name: 'Electricity',
+    expenses: 1413,
+  },
+  {
+    name: 'French',
+    expenses: 81386,
+  },
+  
+];
 const MonthlyDetails = () => {
   return (
     <div className='py-9'>
@@ -81,6 +105,13 @@ const MonthlyDetails = () => {
         label={'Expenses by month'}
         width={'80%'}
         data={data}
+      />
+      <CustomBarChart
+        xaxis={'name'}
+        dataKey='expenses'
+        label={'Expenses by Category'}
+        width={'80%'}
+        data={expenseData}
       />
     </div>
   );
