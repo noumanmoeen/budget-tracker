@@ -1,6 +1,8 @@
 import React from 'react';
 import CustomBarChart from './CustomBarChart';
 
+
+
 const data = [
   {
     name: '2022',
