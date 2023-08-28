@@ -1,7 +1,7 @@
 import React from 'react';
 import CustomBarChart from './CustomBarChart';
-
-
+import CustomDetailsCard from './CustomDetailsCard';
+import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
 
 const data = [
   {
@@ -16,7 +16,14 @@ const data = [
   },
 ];
 
-const expenseData = [
+const data02 = [
+  { name: 'Expenses', value: 8000 },
+  { name: 'Savings', value: 2000 },
+];
+
+const COLORS = ['#0088FE', '#FF8042'];
+
+export const expenseData = [
   {
     name: 'Food',
     expenses: 961720,
@@ -41,10 +48,40 @@ const expenseData = [
 const YearlyDetails = () => {
   return (
     <div className='py-9'>
-      <div>
-        <div>TOP EXPENSES</div>
-        <div>UPCOMING PAYMENTS</div>
-        <div>SAVING GOALS MET</div>
+      <div className='flex flex-row  justify-around mb-8'>
+        <CustomDetailsCard
+          heading={'TOP EXPENSES'}
+          data={expenseData}
+          dataKey={'name'}
+        />
+        <CustomDetailsCard
+          heading={'UPCOMING PAYMENTS'}
+          data={expenseData}
+          dataKey={'name'}
+        />
+        <div className='px-8 py-5 bg-primary border rounded-md shadow-lg'>
+          <p className=' text-xl' >
+            SAVING GOALS MET
+          </p>
+          <ResponsiveContainer width={200} height={200}>
+            <PieChart className='flex flex-col items-start justify-start '>
+              <Pie
+                dataKey='value'
+                data={data02}
+                fill='#171614'
+                stroke='#F5F5F4'
+              >
+                {data02.map((entry, index) => (
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={COLORS[index % COLORS.length]}
+                  />
+                ))}
+              </Pie>
+              <Tooltip />
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
       </div>
       <CustomBarChart
         xaxis={'name'}
