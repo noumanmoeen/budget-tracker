@@ -289,8 +289,6 @@ function Account() {
       method: 'POST',
       headers: {
         'content-type': 'application/x-www-form-urlencoded',
-        'X-RapidAPI-Key': '',
-        'X-RapidAPI-Host': 'nlp-translation.p.rapidapi.com',
       },
       body: new URLSearchParams({
         from,
