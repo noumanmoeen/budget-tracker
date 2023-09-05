@@ -12,10 +12,13 @@ import BudgetDetails from "./pages/BudgetDetails";
 import Profile from "./pages/Profile";
 
 function App() {
+
+  const loggedIn = false
   return (
     <>
       <Router>
-      <Header />
+
+      {loggedIn && <Header />}
 
         <div>
           <Routes>
