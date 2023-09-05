@@ -35,7 +35,7 @@ const ExpenseCard = ({ id, paid, setExpenses, expenses }) => {
             );
           }}
         >
-          laisdiandnaiodaisndioasdinasid
+          lorem
         </div>
       )}
     </>

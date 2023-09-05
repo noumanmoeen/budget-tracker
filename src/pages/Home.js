@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   fetchUserById,
   getPostsStatus,
-} from '../features/sampleSlices/UserSlice';
+} from '../features/users/UserSlice';
 
 const Home = () => {
   const status = useSelector(getPostsStatus);
