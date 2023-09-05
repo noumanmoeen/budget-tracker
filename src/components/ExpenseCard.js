@@ -1,5 +1,8 @@
 import React from 'react';
 
+//TODO
+// REFACTORING OF THIS COMPONENT
+
 const ExpenseCard = ({ id, paid, setExpenses, expenses }) => {
   return (
     <>
