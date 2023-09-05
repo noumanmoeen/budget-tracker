@@ -1,21 +1,14 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  fetchUserById,
-  getPostsStatus,
-} from '../features/users/UserSlice';
+// import { useDispatch, useSelector } from 'react-redux';
+// import {
+//   getPostsStatus,
+// } from '../features/users/UserSlice';
 
 const Home = () => {
-  const status = useSelector(getPostsStatus);
-  const dispatch = useDispatch();
+  // const status = useSelector(getPostsStatus);
+  // const dispatch = useDispatch();
 
-  React.useEffect(() => {
-    if (status === 'idle') {
-      console.log('here ');
-      dispatch(fetchUserById());
-    }
-    console.log(status);
-  }, [status ?? '']);
+
 
   return (
     <>

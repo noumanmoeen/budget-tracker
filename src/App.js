@@ -18,7 +18,6 @@ function App() {
     <>
       <Router>
         {loggedIn && <Header />}
-
         <div>
           <Routes>
             <Route
