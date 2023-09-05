@@ -1,5 +1,6 @@
 import { Navigate } from "react-router-dom";
+import { loggedIn } from "../App";
 
 export const ProtectedRoute = ({ children }) => {
-  return <>{false ? children : <Navigate to="/login" replace={true} />}</>;
+  return <>{loggedIn ? children : <Navigate to="/login" replace={true} />}</>;
 };

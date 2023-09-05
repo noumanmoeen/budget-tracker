@@ -41,7 +41,7 @@ const Register = () => {
               </div>
               <div>
                 <label
-                  for="email"
+                  htmlFor="email"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-text"
                 >
                   Your email
@@ -80,7 +80,7 @@ const Register = () => {
               </div>
               <div>
                 <label
-                  for="password"
+                  htmlFor="password"
                   value={credentials.password}
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-text"
                   onChange={(e) =>
@@ -102,7 +102,7 @@ const Register = () => {
               </div>
               <div>
                 <label
-                  for="password"
+                  htmlFor="password"
                   value={credentials.confirmPass}
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-text"
                   onChange={(e) =>

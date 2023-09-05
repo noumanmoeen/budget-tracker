@@ -1,51 +1,52 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import { ProtectedRoute } from "./utils/ProtectedRoute";
-import Budgets from "./pages/Budgets";
-import Details from "./pages/Details";
-import Header from "./components/Header";
-import BudgetDetails from "./pages/BudgetDetails";
-import Profile from "./pages/Profile";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import { ProtectedRoute } from './utils/ProtectedRoute';
+import Budgets from './pages/Budgets';
+import Details from './pages/Details';
+import Header from './components/Header';
+import BudgetDetails from './pages/BudgetDetails';
+import Profile from './pages/Profile';
 
+export const loggedIn = true;
 function App() {
 
-  const loggedIn = false
   return (
     <>
       <Router>
-
-      {loggedIn && <Header />}
+        {loggedIn && <Header />}
 
         <div>
           <Routes>
             <Route
-              path="/"
+              path='/'
               element={
-                   <Home />
-               }
+                <ProtectedRoute>
+                  <Home />
+                </ProtectedRoute>
+              }
             />
-             <Route
-              path="/budgets"
+            <Route
+              path='/budgets'
               element={
                 <ProtectedRoute>
                   <Budgets />
                 </ProtectedRoute>
               }
             />
-             <Route
-              path="/details"
+            <Route
+              path='/details'
               element={
                 <ProtectedRoute>
                   <Details />
                 </ProtectedRoute>
               }
             />
-             <Route
-              path="/account"
+            <Route
+              path='/account'
               element={
                 <ProtectedRoute>
                   <Profile />
@@ -53,15 +54,15 @@ function App() {
               }
             />
             <Route
-              path="/budget"
+              path='/budget'
               element={
                 <ProtectedRoute>
                   <BudgetDetails />
                 </ProtectedRoute>
               }
             />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<Register />} />
           </Routes>
         </div>
       </Router>
