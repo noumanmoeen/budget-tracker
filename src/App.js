@@ -7,7 +7,6 @@ import Register from "./pages/Register";
 import { ProtectedRoute } from "./utils/ProtectedRoute";
 import Budgets from "./pages/Budgets";
 import Details from "./pages/Details";
-import Account from "./pages/Account";
 import Header from "./components/Header";
 import BudgetDetails from "./pages/BudgetDetails";
 import Profile from "./pages/Profile";
