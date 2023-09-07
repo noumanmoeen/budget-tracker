@@ -10,7 +10,7 @@ import Datepicker from "tailwind-datepicker-react"
 // TODO
 // CHANGE STYLES FOR DATEPICKER
 const BudgetAdd = ({ showModal, setShowModal }) => {
-  const [value, onChange] = React.useState(new Date());
+//   const [value, onChange] = React.useState(new Date());
 
   const [show, setShow] = React.useState(false)
 
