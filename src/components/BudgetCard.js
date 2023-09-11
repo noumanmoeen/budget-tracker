@@ -21,7 +21,7 @@ const BudgetCard = ({ budgetnumber, active, onClick }) => {
         onClick={active ? () => navigate('/budget') : () => {}}
         className={`flex flex-wrap lg:flex-nowrap justify-between  ${
           active ? 'bg-secondary' : 'bg-gray-500 opacity-70'
-        } p-8 border rounded-md shadow-lg`}
+        } p-6 border rounded-md shadow-lg`}
       >
         <div>
           <h1 className=' text-2xl tracking-tight font-bold text-text'>
@@ -34,16 +34,11 @@ const BudgetCard = ({ budgetnumber, active, onClick }) => {
             {active ? 'Current Savings : Rs.50k' : 'Current Savings : -'}
           </h3>
         </div>
-        <ResponsiveContainer width={200} height={200}>
-          <PieChart
-            className='flex flex-col items-start justify-start -mt-6 '
-            width={200}
-            height={200}
-          >
+        <ResponsiveContainer width={200} height={200}  >
+          <PieChart          >
             <Pie
               dataKey='value'
               data={active ? data02 : disabled_data}
-              innerRadius={40}
               outerRadius={80}
               fill='#171614'
               stroke='#F5F5F4'

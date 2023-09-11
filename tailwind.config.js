@@ -10,7 +10,7 @@ module.exports = {
         text: '#293241',
         primary: '#F5F5F4',
         secondary: '#6D9886',
-        disabled: '#a4c6e8',
+        disabled: '#9499A3',
         cancel: '#891337',
         modalBg: '#00000080',
       },

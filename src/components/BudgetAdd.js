@@ -1,25 +1,26 @@
 import React from 'react';
 import CurrencyInput from 'react-currency-input-field';
-import Datepicker from "tailwind-datepicker-react"
+import Datepicker from 'tailwind-datepicker-react';
 
 // import DatePicker from 'react-date-picker';
 // import 'react-date-picker/dist/DatePicker.css';
 // import 'react-calendar/dist/Calendar.css';
 
- 
 // TODO
 // CHANGE STYLES FOR DATEPICKER
 const BudgetAdd = ({ showModal, setShowModal }) => {
-//   const [value, onChange] = React.useState(new Date());
+  //   const [value, onChange] = React.useState(new Date());
 
-  const [show, setShow] = React.useState(false)
+  const [show, setShow] = React.useState(false);
+  const [isActive, setIsActive] = React.useState(false);
 
-	const handleChange = (selectedDate) => {
-		console.log(selectedDate)
-	}
-	const handleClose = (state) => {
-		setShow(state)
-	}
+  const handleChange = (selectedDate) => {
+    console.log(selectedDate);
+  };
+  const handleClose = (state) => {
+    setShow(state);
+  };
+
   return (
     <>
       {showModal ? (
@@ -43,28 +44,11 @@ const BudgetAdd = ({ showModal, setShowModal }) => {
                       </label>
                       <input
                         type='text'
-                        value={''}
+                        // value={''}
                         className='bg-gray-50 border border-gray-300 text-text sm:text-sm rounded-lg  focus:border-primary-600 block w-full p-2.5 dark:bg-primary  dark:placeholder-gray-400 dark:text-text  dark:focus:bg-primary'
                         placeholder='-----'
                         required
                         onChange={(e) => {}}
-                      />
-                    </div>
-                    <div>
-                      <label
-                        htmlFor='password'
-                        value={''}
-                        className='block mb-2 text-sm font-medium text-gray-900 dark:text-text'
-                      >
-                        Password
-                      </label>
-                      <input
-                        type='password'
-                        name='password'
-                        id='password'
-                        placeholder='••••••••'
-                        className='bg-gray-50 border border-gray-300 text-text sm:text-sm rounded-lg  focus:border-primary-600 block w-full p-2.5 dark:bg-primary  dark:placeholder-gray-400 dark:text-text  dark:focus:bg-primary'
-                        required=''
                       />
                     </div>
                     <div>
@@ -98,26 +82,25 @@ const BudgetAdd = ({ showModal, setShowModal }) => {
                       </label>
                       <Datepicker
                         options={{
-                            datepickerClassNames :'bg-white'
+                          datepickerClassNames: 'bg-white',
                         }}
-                        onChange={handleChange} show={show} setShow={handleClose}
+                        onChange={handleChange}
+                        show={show}
+                        setShow={handleClose}
                       />
                     </div>
-                    <div class='flex items-center pl-4 border border-text rounded-lg bg-text shadow hover:shadow-lg'>
-                      <input
-                        id='bordered-checkbox-1'
-                        type='checkbox'
-                        value=''
-                        name='bordered-checkbox'
-                        class='w-4 h-4 text-blue-600 bg-text  rounded  dark:bg-text dark:border-gray-600'
-                      />
-                      <label
-                        for='bordered-checkbox-1'
-                        class='w-full py-4 ml-2 text-sm font-medium bg-text text-primary dark:text-primary'
-                      >
-                        Active
-                      </label>
-                    </div>
+                    <button
+                      type='button'
+                      onClick={() => setIsActive(!isActive)}
+                      data-tooltip-target='tooltip-default'
+                      className={`flex w-full justify-center items-center  border text-primary text-base   ${
+                        isActive ? 'border-text' : 'border-gray-400'
+                      } rounded-lg ${
+                        isActive ? 'bg-text' : 'bg-gray-400'
+                      } bg-text shadow hover:shadow-lg py-4`}
+                    >
+                      Active
+                    </button>
                   </form>
                 </div>
                 <div className='flex items-center justify-end p-6 rounded-b'>
