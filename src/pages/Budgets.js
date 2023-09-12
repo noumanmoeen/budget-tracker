@@ -1,12 +1,20 @@
 import React from 'react';
 import BudgetCard from '../components/BudgetCard';
 import BudgetAdd from '../components/BudgetAdd';
+import { useDispatch } from 'react-redux';
+import { fetchUserBudgets } from '../features/budgets/budgetSlice';
 
 function Budgets() {
   const [isAddModalVisible, setIsAddModalVisible] = React.useState(false);
+  const dispatch = useDispatch();
   let arr = new Array(5);
   arr.fill(2, 0, 5);
   arr = arr.map((a, i) => i + 1);
+
+  React.useEffect(() => {
+    dispatch(fetchUserBudgets())
+  }, [])
+  
   return (
     <>
       <BudgetAdd
