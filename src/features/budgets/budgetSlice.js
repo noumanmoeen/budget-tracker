@@ -25,7 +25,6 @@ const budgetsSlice = createSlice({
     builder
       .addCase(fetchUserBudgets.pending, (state, action) => {
         state.status = 'loading';
-        console.log('HERE 7')
       })
       .addCase(fetchUserBudgets.fulfilled, (state, action) => {
         state.status = 'success';
