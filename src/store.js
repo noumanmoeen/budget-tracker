@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import postsReducer from './features/users/UserSlice';
+import usersReducer from './features/users/UserSlice';
+import budgetsReducer from './features/budgets/budgetSlice';
  
 
 export const store = configureStore({
     reducer: {
-        users: postsReducer,
+        budgets: budgetsReducer,
+        users: usersReducer
      }
 })
