@@ -1,23 +1,24 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { axiosInstance } from '../../http';
 
-
-export const loginUser = createAsyncThunk('user/login', async (actionData) => {
+export const loginUser = createAsyncThunk('login', async (actionData) => {
   const response = await axiosInstance.post('/api/users/login', {
     ...actionData.credentials,
   });
   const { data = {}, status = 0, statusText = '' } = response;
-  if(status === 200)
-  {
+  return { data, status, statusText, onSuccess: actionData.onSuccess };
+});
 
-  }
-  return { data, status, statusText , onSuccess: actionData.onSuccess };
+export const registerUser = createAsyncThunk('register', async (actionData) => {
+  const response = await axiosInstance.post('/api/users', {
+    ...actionData.credentials,
+  });
+  const { data = {}, status = 0, statusText = '' } = response;
+  return { data, status, statusText, onSuccess: actionData.onSuccess };
 });
 
 const initialState = {
-  user: {
-    name: 'nouman',
-  },
+  user: {},
   status: 'idle',
   isLoggedIn: false,
 };
@@ -44,10 +45,25 @@ const usersSlice = createSlice({
         localStorage.setItem('isLoggedIn', true);
         localStorage.setItem('token', token);
         state.user = action.payload;
-        state.isLoggedIn = true
-        action.payload.onSuccess()
+        state.isLoggedIn = true;
+        action.payload.onSuccess();
       })
       .addCase(loginUser.rejected, (state, action) => {
+        state.loading = 'failed';
+      })
+      .addCase(registerUser.pending, (state, action) => {
+        state.loading = 'loading';
+      })
+      .addCase(registerUser.fulfilled, (state, action) => {
+        state.loading = 'success';
+        const token = action.payload?.data?.token || '';
+        localStorage.setItem('isLoggedIn', true);
+        localStorage.setItem('token', token);
+        state.user = action.payload;
+        state.isLoggedIn = true;
+        action.payload.onSuccess();
+      })
+      .addCase(registerUser.rejected, (state, action) => {
         state.loading = 'failed';
       });
   },
