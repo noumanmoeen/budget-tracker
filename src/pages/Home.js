@@ -1,12 +1,6 @@
 import React from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-// import {
-//   getPostsStatus,
-// } from '../features/users/UserSlice';
 
 const Home = () => {
-  // const status = useSelector(getPostsStatus);
-  // const dispatch = useDispatch();
 
 
 
