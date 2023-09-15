@@ -30,10 +30,6 @@ let sample_data = [
 ];
 
 const BudgetDetails = () => {
-  // let arr = new Array(5);
-  // arr.fill(2, 0, 5);
-  // arr = arr.map((a, i) => i + 1);
-
   const [expenses, setExpenses] = React.useState(sample_data);
   const [isEditEnabled, setIsEditEnabled] = React.useState(false);
 

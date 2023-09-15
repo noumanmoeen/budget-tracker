@@ -4,14 +4,10 @@ import { useDispatch } from 'react-redux';
 import Datepicker from 'tailwind-datepicker-react';
 import { addBudget, fetchUserBudgets } from '../features/budgets/budgetSlice';
 
-// import DatePicker from 'react-date-picker';
-// import 'react-date-picker/dist/DatePicker.css';
-// import 'react-calendar/dist/Calendar.css';
-// title, monthlyBudget, startDate, active,
+
 // TODO
 // CHANGE STYLES FOR DATEPICKER
 const BudgetAdd = ({ showModal, setShowModal }) => {
-  //   const [value, onChange] = React.useState(new Date());
   const dispatch = useDispatch();
   const [show, setShow] = React.useState(false);
   const [addBudgetData, setAddBudgetData] = React.useState({
@@ -23,7 +19,6 @@ const BudgetAdd = ({ showModal, setShowModal }) => {
 
   const handleChange = (selectedDate) => {
     setAddBudgetData((pre) => ({ ...pre, startDate: selectedDate }));
-    // console.log(selectedDate);
   };
   const handleClose = (state) => {
     setShow(state);

@@ -16,9 +16,6 @@ function Budgets() {
       .catch((err) => console.log(err));
   }, []);
 
-  React.useEffect(() => {
-    console.log('-----------', budgets);
-  }, [budgets]);
   return (
     <>
       <BudgetAdd

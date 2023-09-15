@@ -19,11 +19,6 @@ const Login = () => {
   const handleSignIn = async () => {
     dispatch(loginUser({credentials , onSuccess : () => navigate('/')}))
   };
-
-  React.useEffect(() => {
-    console.log('HERE 99', data);
-  }, [data]);
-
   return (
     <section className='bg-primary dark:bg-primary'>
       <div className='flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0'>

@@ -47,8 +47,6 @@ const budgetsSlice = createSlice({
       })
       .addCase(addBudget.fulfilled, (state, action) => {
         state.status = 'success';
-        // state.budgets = action.payload;
-        // action.payload.onSuccess()
       })
       .addCase(addBudget.rejected, (state, action) => {
         state.status = 'failed';
