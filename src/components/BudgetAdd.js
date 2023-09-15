@@ -7,6 +7,7 @@ import { addBudget, fetchUserBudgets } from '../features/budgets/budgetSlice';
 
 // TODO
 // CHANGE STYLES FOR DATEPICKER
+
 const BudgetAdd = ({ showModal, setShowModal }) => {
   const dispatch = useDispatch();
   const [show, setShow] = React.useState(false);
