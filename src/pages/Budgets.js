@@ -1,20 +1,24 @@
 import React from 'react';
 import BudgetCard from '../components/BudgetCard';
 import BudgetAdd from '../components/BudgetAdd';
-import { useDispatch } from 'react-redux';
-import { fetchUserBudgets } from '../features/budgets/budgetSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchUserBudgets, getBudgets } from '../features/budgets/budgetSlice';
 
 function Budgets() {
   const [isAddModalVisible, setIsAddModalVisible] = React.useState(false);
+  const budgets = useSelector(getBudgets);
   const dispatch = useDispatch();
-  let arr = new Array(5);
-  arr.fill(2, 0, 5);
-  arr = arr.map((a, i) => i + 1);
 
   React.useEffect(() => {
     dispatch(fetchUserBudgets())
-  }, [])
-  
+      .unwrap()
+      .then((res) => {})
+      .catch((err) => console.log(err));
+  }, []);
+
+  React.useEffect(() => {
+    console.log('-----------', budgets);
+  }, [budgets]);
   return (
     <>
       <BudgetAdd
@@ -39,9 +43,10 @@ function Budgets() {
           </button>
         </div>
         <div className='grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-6'>
-          {arr.map((item) => (
-            <BudgetCard key={item} budgetnumber={item} active={item === 1} />
-          ))}
+          {budgets &&
+            budgets.map(({ _id, title, active }) => (
+              <BudgetCard key={_id} title={title} active={active} />
+            ))}
         </div>
       </div>
     </>

@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
 
-const BudgetCard = ({ budgetnumber, active, onClick }) => {
+const BudgetCard = ({ title, active, onClick }) => {
   const data02 = [
     { name: 'Expenses', value: 8000 },
     { name: 'Savings', value: 2000 },
@@ -25,7 +25,7 @@ const BudgetCard = ({ budgetnumber, active, onClick }) => {
       >
         <div>
           <h1 className=' text-2xl tracking-tight font-bold text-text'>
-            Name : Budget {budgetnumber}
+            Name : Budget {title}
           </h1>
           <h3 className=' text-l tracking-tight font-bold text-text'>
             {active ? 'Amount : Rs.250k' : 'Amount : -'}

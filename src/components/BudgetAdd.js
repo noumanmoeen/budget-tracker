@@ -1,24 +1,44 @@
 import React from 'react';
 import CurrencyInput from 'react-currency-input-field';
+import { useDispatch } from 'react-redux';
 import Datepicker from 'tailwind-datepicker-react';
+import { addBudget, fetchUserBudgets } from '../features/budgets/budgetSlice';
 
 // import DatePicker from 'react-date-picker';
 // import 'react-date-picker/dist/DatePicker.css';
 // import 'react-calendar/dist/Calendar.css';
-
+// title, monthlyBudget, startDate, active,
 // TODO
 // CHANGE STYLES FOR DATEPICKER
 const BudgetAdd = ({ showModal, setShowModal }) => {
   //   const [value, onChange] = React.useState(new Date());
-
+  const dispatch = useDispatch();
   const [show, setShow] = React.useState(false);
-  const [isActive, setIsActive] = React.useState(false);
+  const [addBudgetData, setAddBudgetData] = React.useState({
+    title: '',
+    monthlyBudget: 0,
+    startDate: '',
+    active: false,
+  });
 
   const handleChange = (selectedDate) => {
-    console.log(selectedDate);
+    setAddBudgetData((pre) => ({ ...pre, startDate: selectedDate }));
+    // console.log(selectedDate);
   };
   const handleClose = (state) => {
     setShow(state);
+  };
+
+  const handleSave = async () => {
+    dispatch(addBudget(addBudgetData))
+      .unwrap()
+      .then((res) => {
+        dispatch(fetchUserBudgets());
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    setShowModal(false);
   };
 
   return (
@@ -44,11 +64,16 @@ const BudgetAdd = ({ showModal, setShowModal }) => {
                       </label>
                       <input
                         type='text'
-                        // value={''}
+                        value={addBudgetData.title}
                         className='bg-gray-50 border border-gray-300 text-text sm:text-sm rounded-lg  focus:border-primary-600 block w-full p-2.5 dark:bg-primary  dark:placeholder-gray-400 dark:text-text  dark:focus:bg-primary'
                         placeholder='-----'
                         required
-                        onChange={(e) => {}}
+                        onChange={(e) => {
+                          setAddBudgetData((pre) => ({
+                            ...pre,
+                            title: e.target.value,
+                          }));
+                        }}
                       />
                     </div>
                     <div>
@@ -68,7 +93,10 @@ const BudgetAdd = ({ showModal, setShowModal }) => {
                         decimalsLimit={2}
                         prefix='Rs.'
                         onValueChange={(value, name) =>
-                          console.log(value, name)
+                          setAddBudgetData((pre) => ({
+                            ...pre,
+                            monthlyBudget: Number(value),
+                          }))
                         }
                       />
                     </div>
@@ -91,12 +119,17 @@ const BudgetAdd = ({ showModal, setShowModal }) => {
                     </div>
                     <button
                       type='button'
-                      onClick={() => setIsActive(!isActive)}
+                      onClick={() =>
+                        setAddBudgetData((pre) => ({
+                          ...pre,
+                          active: !pre.active,
+                        }))
+                      }
                       data-tooltip-target='tooltip-default'
                       className={`flex w-full justify-center items-center  border text-primary text-base   ${
-                        isActive ? 'border-text' : 'border-gray-400'
+                        addBudgetData.active ? 'border-text' : 'border-gray-300'
                       } rounded-lg ${
-                        isActive ? 'bg-text' : 'bg-gray-400'
+                        addBudgetData.active ? 'bg-text' : 'bg-gray-300'
                       } bg-text shadow hover:shadow-lg py-4`}
                     >
                       Active
@@ -114,7 +147,7 @@ const BudgetAdd = ({ showModal, setShowModal }) => {
                   <button
                     className='bg-text text-white active:bg-gray-500 font-bold uppercase text-sm px-6 py-3 rounded-lg shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150'
                     type='button'
-                    onClick={() => setShowModal(false)}
+                    onClick={handleSave}
                   >
                     Save Changes
                   </button>

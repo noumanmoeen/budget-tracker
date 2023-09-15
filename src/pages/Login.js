@@ -5,7 +5,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import {
   getUserData,
   loginUser,
-  sampleMethod,
 } from '../features/users/UserSlice';
 
 const Login = () => {
