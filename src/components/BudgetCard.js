@@ -1,12 +1,13 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams,  } from 'react-router-dom';
 import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
 
-const BudgetCard = ({ title, active, onClick }) => {
+const BudgetCard = ({ title, active, onClick , key , id }) => {
   const data02 = [
     { name: 'Expenses', value: 8000 },
     { name: 'Savings', value: 2000 },
   ];
+
 
   const disabled_data = [{ name: 'Expenses', value: 8000 }];
 
@@ -18,8 +19,8 @@ const BudgetCard = ({ title, active, onClick }) => {
   return (
     <>
       <div
-        onClick={active ? () => navigate('/budget') : () => {}}
-        className={`flex flex-wrap lg:flex-nowrap justify-between  ${
+        onClick={active ? () => navigate(`/budget/${id}`) : () => {}}
+        className={`flex flex-wrap lg:flex-nowrap justify-between cursor-pointer ${
           active ? 'bg-secondary' : 'bg-gray-500 opacity-70'
         } p-6 border rounded-md shadow-lg`}
       >

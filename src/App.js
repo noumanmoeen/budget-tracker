@@ -71,7 +71,7 @@ function App() {
               }
             />
             <Route
-              path='/budget'
+              path='/budget/:id'
               element={
                 <ProtectedRoute>
                   <BudgetDetails />

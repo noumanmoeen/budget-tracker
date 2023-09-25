@@ -1,6 +1,9 @@
 import React from "react";
 import { Cell, Pie, PieChart, Tooltip } from "recharts";
 import ExpenseCard from "../components/ExpenseCard";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getBudgetDetails, getCurrentBudget } from "../features/budgets/budgetSlice";
 
 let sample_data = [
   {
@@ -32,6 +35,9 @@ let sample_data = [
 const BudgetDetails = () => {
   const [expenses, setExpenses] = React.useState(sample_data);
   const [isEditEnabled, setIsEditEnabled] = React.useState(false);
+  const budgets = useSelector(getCurrentBudget);
+  const dispatch = useDispatch();
+  const { id } = useParams()
 
   const data02 = [
     { name: "Expenses", value: 80 },
@@ -40,6 +46,13 @@ const BudgetDetails = () => {
 
   const COLORS = ["#0088FE", "#FF8042"];
 
+
+  React.useEffect(() => {
+    dispatch(getBudgetDetails(id))
+      .unwrap()
+      .then((res) => {})
+      .catch((err) => console.log(err));
+  })
   // TODO
   // Add buttons for confirmation and cancellation
   // There are some bugs in this page and improvements to be made

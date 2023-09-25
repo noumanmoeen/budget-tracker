@@ -42,7 +42,7 @@ function Budgets() {
         <div className='grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-6'>
           {budgets &&
             budgets.map(({ _id, title, active }) => (
-              <BudgetCard key={_id} title={title} active={active} />
+              <BudgetCard key={_id} title={title} active={active} id={_id} />
             ))}
         </div>
       </div>
