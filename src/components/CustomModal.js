@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Modal = ({ title , onSave, onClose , showModal }) => {
+const CustomModal = ({ title, onSave, onClose, showModal, children }) => {
   return (
     <>
       {showModal ? (
@@ -13,6 +13,7 @@ const Modal = ({ title , onSave, onClose , showModal }) => {
                     {title}
                   </h3>
                 </div>
+                <div className='relative p-6 flex-auto'>{children}</div>
                 <div className='flex items-center justify-end p-6 rounded-b'>
                   <button
                     className='text-white bg-cancel background-transparent font-bold uppercase text-sm px-6 py-3 rounded-lg shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150'
@@ -39,4 +40,4 @@ const Modal = ({ title , onSave, onClose , showModal }) => {
   );
 };
 
-export default Modal;
+export default CustomModal;
