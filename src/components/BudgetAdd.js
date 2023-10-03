@@ -125,7 +125,7 @@ const BudgetAdd = ({ showModal, setShowModal }) => {
                       className={`flex w-full justify-center items-center  border text-primary text-base   ${
                         addBudgetData.active ? 'border-text' : 'border-gray-300'
                       } rounded-lg ${
-                        addBudgetData.active ? 'bg-text' : 'bg-gray-300'
+                        addBudgetData.active ? 'bg-text' : 'bg-gray-500'
                       } bg-text shadow hover:shadow-lg py-4`}
                     >
                       Active

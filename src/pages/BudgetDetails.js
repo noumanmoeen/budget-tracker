@@ -8,6 +8,7 @@ import {
   getCurrentBudget,
 } from '../features/budgets/budgetSlice';
 import { NumericFormat } from 'react-number-format';
+import CustomModal from '../components/CustomModal';
 let sample_data = [
   {
     id: 1,
@@ -69,6 +70,18 @@ const BudgetDetails = () => {
     <div className='p-6'>
       <div className='flex flex-row justify-between'>
         <div className='w-full'>
+          <CustomModal
+            title={'Sample'}
+            onSave={() => {}}
+            onClose={() => {}}
+            showModal={false}
+          >
+            <div>
+            <h1 className=' text-4xl tracking-tight font-extrabold text-text '>
+              {'title'}
+            </h1>
+            </div>
+          </CustomModal>
           <div className='flex flex-row justify-between'>
             <h1 className=' text-4xl tracking-tight font-extrabold text-text mb-10 '>
               {title}
