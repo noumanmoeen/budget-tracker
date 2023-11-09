@@ -2,10 +2,8 @@ import React from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import {
-  getUserData,
-  loginUser,
-} from '../features/users/UserSlice';
+import { getUserData, loginUser } from '../features/users/UserSlice';
+import { accessibilityInstance } from '..';
 
 const Login = () => {
   const [credentials, setCredentials] = useState({
@@ -17,14 +15,17 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleSignIn = async () => {
-    dispatch(loginUser({credentials , onSuccess : () => navigate('/')}))
+    dispatch(loginUser({ credentials, onSuccess: () => navigate('/') }));
   };
   return (
     <section className='bg-primary dark:bg-primary'>
       <div className='flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0'>
-        <div className='w-full bg-secondary rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-secondary dark:bg-secondary'>
+        <div
+          style={{ width: '500px' }}
+          className='bg-secondary rounded-lg shadow dark:border md:mt-0 xl:p-0 dark:bg-secondary dark:bg-secondary'
+        >
           <div className='p-6 space-y-4 md:space-y-6 sm:p-8'>
-            <h1 className='text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-text'>
+            <h1 className='text-xl font-bold leading-tight tracking-tight text-primary md:text-2xl dark:text-text'>
               Sign in to your account
             </h1>
             <form
@@ -125,6 +126,38 @@ const Login = () => {
                   Sign up
                 </Link>
               </p>
+              <button
+                onClick={() => {
+                  accessibilityInstance.menuInterface.increaseText();
+                }}
+                className='w-full bg-text text-primary bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800'
+              >
+                Increase
+              </button>
+              <button
+                onClick={() => {
+                  accessibilityInstance.menuInterface.decreaseText();
+                }}
+                className='w-full bg-text text-primary bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800'
+              >
+                Decrease
+              </button>
+              <button
+                onClick={() => {
+                  accessibilityInstance.menuInterface.grayHues();
+                }}
+                className='w-full bg-text text-primary bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800'
+              >
+                Gray
+              </button>
+              <button
+                onClick={() => {
+                  accessibilityInstance.resetAll()
+                }}
+                className='w-full bg-text text-primary bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800'
+              >
+                Reset
+              </button>
             </form>
           </div>
         </div>

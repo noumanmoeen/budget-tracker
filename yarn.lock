@@ -2727,6 +2727,11 @@ accepts@~1.3.4, accepts@~1.3.5, accepts@~1.3.8:
     mime-types "~2.1.34"
     negotiator "0.6.3"
 
+accessibility@^4.5.7:
+  version "4.5.7"
+  resolved "https://registry.npmjs.org/accessibility/-/accessibility-4.5.7.tgz"
+  integrity sha512-aXZY9sLQuVaGxeu8KYiFVXLsjvu+a/52njVCyoI8wuwRTwd4b1mrl2nkzNFEP4S08DqKy2Fzm52stZXWBDH9+g==
+
 acorn-globals@^6.0.0:
   version "6.0.0"
   resolved "https://registry.npmjs.org/acorn-globals/-/acorn-globals-6.0.0.tgz"
